@@ -1,0 +1,96 @@
+@use '../constants/colors.scss' as color;
+
+.card {
+  background-color: color.$primary-color-black;
+  width: 500px;
+  height: 210px;
+  color: color.$primary-color-white;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  img {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 100px;
+  }
+}
+
+.card:hover {
+  border: 4px solid color.$primary-color-orange;
+}
+
+.airplane_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .airplane_company {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2em;
+  }
+
+  .flight_number {
+    padding: 4px 8px;
+    background-color: color.$primary-color-dark;
+    border-radius: 100px;
+    font-size: 1em;
+  }
+
+}
+
+.airport_info {
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    font-size: 1.2em;
+  }
+
+  h1 {
+    font-size: 1.7em;
+  }
+  
+  input[type=range] {
+    border-radius: 100px;
+  }
+  /* WebKit (Chrome, Safari, Opera, Edge) */
+  input[type="range"]::-webkit-slider-runnable-track { 
+    background-color: color.$primary-color-orange;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    background-image: url('/plane.svg'); /* Цвет ползунка */
+    background-color: transparent;
+    background-position: center;
+    background-size: 20px;
+    padding: 10px;
+    background-repeat: no-repeat;
+    border: 0;
+  }
+  
+  /* Firefox */
+  input[type="range"]::-moz-range-track { 
+    background-color: color.$primary-color-dark;
+  }
+
+
+  input[type="range"]::-moz-range-progress {
+    background-color: color.$primary-color-orange;
+    border-radius: 5px;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    background-image: url('/plane.svg'); /* Цвет ползунка */
+    background-color: transparent;
+    background-position: center;
+    background-size: 20px;
+    padding: 10px;
+    background-repeat: no-repeat;
+    border: 0;
+  }
+
+}
