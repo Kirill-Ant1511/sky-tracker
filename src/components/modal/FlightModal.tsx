@@ -2,13 +2,17 @@ import { createPortal } from "react-dom";
 import '../../styles/FlightModal.scss'
 import { FLIGHTS } from "../flight-list/flights.data";
 import { useNavigate } from "react-router";
+import { useMemo } from "react";
 interface Props {
   flightNumber: string,
 }
 
 
 export function FlightModal({flightNumber}: Props) {
-  const flight = FLIGHTS.find(flight => flight.flightInfo.flightNumber === flightNumber)!;
+  const flight = useMemo(() => 
+    {
+      return FLIGHTS.find(flight => flight.flightInfo.flightNumber === flightNumber)!
+    }, [flightNumber]);
   const navigate = useNavigate();
   const closeModal = () => {
     navigate('/');

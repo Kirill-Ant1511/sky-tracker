@@ -1,15 +1,15 @@
-import { FlightCard } from "./FlightCard";
+import FlightCard  from "./FlightCard";
 import { FLIGHTS } from "./flights.data";
 import { FlightModal } from "../modal/FlightModal";
 import { useParams } from "react-router";
-
+import '../../styles/FLightList.scss'
 export function FlightList() {
   const {flightNumber} = useParams();
-  return <div className="overflow-y-auto relative">
-    <div>
-      {
-        flightNumber && <FlightModal flightNumber={flightNumber}/>
-      }
+  return <div >
+    {
+      flightNumber && <FlightModal flightNumber={flightNumber}/>
+    }
+    <div className="flight_list">
       {
         FLIGHTS.map((flight) => (
           <FlightCard

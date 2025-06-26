@@ -1,17 +1,18 @@
 import type { IFlight } from "../../types/IFlight"
 import '../../styles/FlightCard.scss'
-import { useNavigate } from "react-router"
+import { useLocation, useNavigate } from "react-router"
+import { memo, useMemo } from "react";
 interface Props {
   flight: IFlight,
 }
 
-export function FlightCard({flight}: Props) {
-
+function FlightCard({flight}: Props) {
   const navigate = useNavigate();
-
   const setPathname = () => {
     navigate(`/${flight.flightInfo.flightNumber}`)
   }
+
+
 
   return <button className="card" onClick={setPathname}>
     <div className="airplane_info">
@@ -36,3 +37,5 @@ export function FlightCard({flight}: Props) {
     </div>
   </button>
 }
+
+export default memo(FlightCard);
