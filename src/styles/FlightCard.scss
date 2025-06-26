@@ -2,7 +2,7 @@
 
 .card {
   background-color: color.$primary-color-black;
-  width: 500px;
+  width: 450px;
   height: 210px;
   color: color.$primary-color-white;
   display: flex;
@@ -11,11 +11,13 @@
   margin: 20px;
   padding: 20px;
   border-radius: 15px;
+
+  transition: all .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   img {
     width: 45px;
     height: 45px;
-    object-fit: cover;
     border-radius: 100px;
+    background-color: color.$primary-color-white;
   }
 }
 

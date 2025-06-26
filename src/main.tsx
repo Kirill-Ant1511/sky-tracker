@@ -12,6 +12,11 @@ createRoot(document.getElementById('root')!).render(
           path="/"
           element={<Home />}
         />
+
+        <Route 
+          path="/:flightNumber"
+          element={<Home />}
+        />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
