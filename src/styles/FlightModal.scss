@@ -13,170 +13,41 @@
 }
 
 .modal_info {
-  background-color: color.$primary-color-dark;
-  color: color.$primary-color-white;
-  opacity: 0;
-  transition: opacity .5s cubic-bezier(0.19, 1, 0.22, 1);
-  animation: out_in .5s reverse;
-}
-
-.modal_info.active {
-  opacity: 1;
-  transition: opacity .5s cubic-bezier(0.19, 1, 0.22, 1);
+  // background-color: color.$primary-color-dark;
+  // color: color.$primary-color-white;
+  position: fixed;
+  top: 15px;
+  right: 10px;
+  background-color: color.$primary-color-white;
+  overflow: hidden;
+  border-radius: 12px;
+  width: 450px;
+  transition: all .5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
   animation: out_in .5s;
-}
-
-.modal_info.close {
-  animation: out_in .5s reverse;
-  opacity: 0;
-}
-
-.plane_info {
-  width: 90%;
-  border-radius: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 7px 20px;
-  background-color: color.$primary-color-dark;
-  .plane_number {
-    color: color.$primary-color-orange;
-  }
-
-  button {
-    width: 40px;
-    height: 40px;
-    padding: 5px;
-    background-color: color.$primary-color-black;
-    border-radius: 100px;
+  & * {
+    transition: all .5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
   }
 }
 
-.flight_info {
-  width: 100%;
-  display: flex;
-  gap: 5px;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  position: relative;
-
-
-  .from, .to {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    align-items: center;
-    background-color: color.$primary-color-black;
-    width: 100%;
-    padding: 20px;
-  }
-
-  .centr_img {
-    position: absolute;
-    background-color: color.$primary-color-dark;
-    padding: 15px;
-    border-radius: 100px;
-    img {
-      width: 20px;
-      height: 20px;
-    }
-  }
-}
-
-.status_info {
-  background-color: color.$primary-color-black;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 20px;
-
-  div {
-    display: flex;
-  }
-
-  input[type=range] {
-    border-radius: 100px;
-  }
-  /* WebKit (Chrome, Safari, Opera, Edge) */
-  input[type="range"]::-webkit-slider-runnable-track { 
-    background-color: color.$primary-color-orange;
-  }
-  input[type="range"]::-webkit-slider-thumb {
-    background-image: url('/plane.svg'); /* Цвет ползунка */
-    background-color: transparent;
-    background-position: center;
-    background-size: 20px;
-    padding: 10px;
-    background-repeat: no-repeat;
-    border: 0;
-  }
-  
-  /* Firefox */
-  input[type="range"]::-moz-range-track { 
-    background-color: color.$primary-color-dark;
-  }
-
-
-  input[type="range"]::-moz-range-progress {
-    background-color: color.$primary-color-orange;
-    border-radius: 5px;
-  }
-
-  input[type="range"]::-moz-range-thumb {
-    background-image: url('/plane.svg'); /* Цвет ползунка */
-    background-color: transparent;
-    background-position: center;
-    background-size: 20px;
-    padding: 10px;
-    background-repeat: no-repeat;
-    border: 0;
-  }
-}
-
-.block_info {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 5px;
-  p {
-    display: flex;
-    padding: 12px 15px;
-    justify-content: space-between;
-    background-color: color.$primary-color-black;
-    span:first-child {
-      color: rgba(255, 255, 255, .3);
-    }
-  }
-}
-
-.multi_info {
-  width: 94%;
-  border-radius: 12px;
+.general_info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
+  padding: 10px 0;
+  gap: 5px;
 }
 
-.button_block {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  width: 94%;
-  border-radius: 12px;
-  overflow: hidden;
-  margin: 10px;
-  gap: 5px;
-  button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 5px;
-    background-color: color.$primary-color-black;
-    cursor: pointer;
-    img {
-      width: 30px;
-    }
+.dark {
+  .modal_info {
+    background-color: color.$primary-color-dark;
   }
 }
+
+
+
+
+
+
+
+
+

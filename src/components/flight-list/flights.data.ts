@@ -147,6 +147,6 @@ export const FLIGHTS: IFlight[] = [
     speed: 780,
     altitude: 11220,
     createCountry: "🇮🇪 Ireland",
-    status: 60
+    status: 20
   }
 ]

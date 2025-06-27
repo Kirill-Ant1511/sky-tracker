@@ -1,6 +1,6 @@
 import FlightCard  from "./FlightCard";
 import { FLIGHTS } from "./flights.data";
-import { FlightModal } from "../modal/FlightModal";
+import { FlightModal } from "../modal/flight-datail/FlightModal";
 import { useParams } from "react-router";
 import '../../styles/FLightList.scss'
 export function FlightList() {

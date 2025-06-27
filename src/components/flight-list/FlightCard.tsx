@@ -1,7 +1,8 @@
 import type { IFlight } from "../../types/IFlight"
 import '../../styles/FlightCard.scss'
-import { useLocation, useNavigate } from "react-router"
-import { memo, useMemo } from "react";
+import { useNavigate } from "react-router"
+import { memo } from "react";
+import { StatusBar } from "../ui/StatusBar";
 interface Props {
   flight: IFlight,
 }
@@ -29,7 +30,7 @@ function FlightCard({flight}: Props) {
         <h1>{flight.flightInfo.fromCode}</h1>
       </div>
 
-      <input type="range" min={0} max={100} value={flight.status}/>
+      <StatusBar flight={flight} min={0} max={100} onChange={() => {}}/>
       <div className="to_info">
         <span>{flight.flightInfo.to}</span>
         <h1>{flight.flightInfo.toCode}</h1>

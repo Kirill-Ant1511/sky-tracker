@@ -6,7 +6,9 @@ export function Home() {
 
   return (
     <>
+    <div>
       <FlightList />
+    </div>
     </>
   )
 }
