@@ -1,126 +1,124 @@
 @use '../constants/colors.scss' as color;
 
 .flight_info_block {
-  width: 95%;
-  border-radius: 12px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+	width: 95%;
+	border-radius: 12px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
 
-  color: color.$primary-color-dark;
+	color: color.$primary-color-dark;
 }
 
 .flight_info {
-  width: 100%;
-  display: flex;
-  gap: 5px;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  position: relative;
+	width: 100%;
+	display: flex;
+	gap: 5px;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	position: relative;
 
+	span.code {
+		font-size: 1.4em;
+	}
 
-  span.code {
-    font-size: 1.4em;
-  }
+	span.town {
+		font-size: 1em;
+	}
 
-  span.town {
-    font-size: 1em;
-  }
+	.from,
+	.to {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		align-items: center;
+		width: 100%;
+		padding: 15px 0;
+		background-color: color.$middle-gray;
+		.flight_timestamp {
+			font-size: 15px;
+			color: rgba($color: #000000, $alpha: 0.5);
+		}
+	}
 
-  .from, .to {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    align-items: center;
-    width: 100%;
-    padding: 15px 0;
-    background-color: color.$middle-gray;
-    .flight_timestamp {
-      font-size: 15px;
-      color: rgba($color: #000000, $alpha: .5);
-    }
-  }
-
-  .centr_img {
-    position: absolute;
-    background-color: color.$primary-color-gray;
-    padding: 15px;
-    border-radius: 100px;
-    img {
-      width: 20px;
-      height: 20px;
-    }
-  }
+	.centr_img {
+		position: absolute;
+		background-color: color.$primary-color-gray;
+		padding: 15px;
+		border-radius: 100px;
+		img {
+			width: 20px;
+			height: 20px;
+		}
+	}
 }
 
 .status_info {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 20px;
-  background-color: color.$middle-gray;
-  color: color.$smooth-text-white;
-  .distance_info {
-    display: flex;
-    justify-content: space-between;
-    margin: 3px 0;
-  }
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 20px;
+	background-color: color.$middle-gray;
+	color: color.$smooth-text-white;
+	.distance_info {
+		display: flex;
+		justify-content: space-between;
+		margin: 3px 0;
+	}
 }
 
 .block_info {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 5px;
-  color: color.$primary-color-dark;
-  p {
-    display: flex;
-    padding: 12px 15px;
-    justify-content: space-between;
-    background-color: color.$middle-gray;
-    span:first-child {
-      color: color.$smooth-text-white;
-    }
-  }
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 5px;
+	color: color.$primary-color-dark;
+	p {
+		display: flex;
+		padding: 12px 15px;
+		justify-content: space-between;
+		background-color: color.$middle-gray;
+		span:first-child {
+			color: color.$smooth-text-white;
+		}
+	}
 }
 
-
-
 .dark {
+	.flight_info_block {
+		color: color.$primary-color-white;
+	}
 
-  .flight_info_block {
-    color: color.$primary-color-white;
-  }
+	.flight_info {
+		.from,
+		.to {
+			background-color: color.$primary-color-black;
+			.flight_timestamp {
+				font-size: 15px;
+				color: rgba($color: #ffffff, $alpha: 0.5);
+			}
+		}
 
-  .flight_info {
-    .from, .to {
-      background-color: color.$primary-color-black;
-      .flight_timestamp {
-        font-size: 15px;
-        color: rgba($color: #ffffff, $alpha: .5);
-      }
-    }
+		.centr_img {
+			background-color: color.$primary-color-dark;
+		}
+	}
 
-    .centr_img {
-      background-color: color.$primary-color-dark;
-    }
-  }
+	.status_info {
+		background-color: color.$primary-color-black;
+		color: color.$smooth-text-dark;
+	}
 
-  .status_info {
-    background-color: color.$primary-color-black;
-    color: color.$smooth-text-dark;
-  }
-
-  .block_info {
-    color: color.$primary-color-white;
-    p {
-      background-color: color.$primary-color-black;
-      span:first-child {
-        color: color.$smooth-text-dark;
-      }
-    }
-  }
+	.block_info {
+		color: color.$primary-color-white;
+		p {
+			background-color: color.$primary-color-black;
+			span:first-child {
+				color: color.$smooth-text-dark;
+			}
+		}
+	}
 }

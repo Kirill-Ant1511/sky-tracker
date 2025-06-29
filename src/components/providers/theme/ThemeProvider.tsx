@@ -1,25 +1,28 @@
-import { useEffect, useState, type ReactNode } from "react";
-import { ThemeContext } from "./theme.context";
+import { useEffect, useState, type ReactNode } from 'react'
+import { ThemeContext } from './theme.context'
 
+export function ThemeProfider({ children }: { children: ReactNode }) {
+	const [theme, setTheme] = useState(
+		() => localStorage.getItem('theme') || 'dark'
+	)
 
-export function ThemeProfider({children}: {children: ReactNode}) {
-  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
+	useEffect(() => {
+		document.documentElement.classList.toggle('dark', theme === 'dark')
+		localStorage.setItem('theme', theme)
+	}, [theme])
 
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+	const toggleTheme = () => {
+		setTheme(prev => (prev === 'dark' ? 'light' : 'dark'))
+	}
 
-  const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
-  }
-
-  return <ThemeContext.Provider
-    value={{
-        theme,
-        toggleTheme
-      }}
-  >
-    {children}
-  </ThemeContext.Provider>
+	return (
+		<ThemeContext.Provider
+			value={{
+				theme,
+				toggleTheme
+			}}
+		>
+			{children}
+		</ThemeContext.Provider>
+	)
 }

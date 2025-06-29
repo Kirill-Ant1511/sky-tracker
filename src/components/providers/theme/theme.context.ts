@@ -1,10 +1,8 @@
-import { createContext } from "react";
-
-
+import { createContext } from 'react'
 
 export interface IThemeContext {
-  theme: string,
-  toggleTheme: () => void
+	theme: string
+	toggleTheme: () => void
 }
 
-export const ThemeContext = createContext<IThemeContext>({} as IThemeContext);
+export const ThemeContext = createContext<IThemeContext>({} as IThemeContext)

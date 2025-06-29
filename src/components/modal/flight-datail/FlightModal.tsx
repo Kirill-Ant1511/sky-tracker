@@ -1,44 +1,39 @@
-import { createPortal } from "react-dom";
+import { useMemo } from 'react'
+import { createPortal } from 'react-dom'
 import '../../../styles/FlightModal.scss'
-import { FLIGHTS } from "../../flight-list/flights.data";
-import { useMemo } from "react";
-import { FlightAction } from "./FlightActions";
-import { PlaneInfo } from "./PlaneInfo";
-import { FlightInfo } from "./FlightInfo";
-import { MultiFlightInfo } from "./MultiFlightInfo";
+import { FLIGHTS } from '../../flight-list/flights.data'
+import { FlightAction } from './FlightActions'
+import { FlightInfo } from './FlightInfo'
+import { MultiFlightInfo } from './MultiFlightInfo'
+import { PlaneInfo } from './PlaneInfo'
 interface Props {
-  flightNumber: string,
+	flightNumber: string
 }
 
+export function FlightModal({ flightNumber }: Props) {
+	const flight = useMemo(() => {
+		return FLIGHTS.find(
+			flight => flight.flightInfo.flightNumber === flightNumber
+		)!
+	}, [flightNumber])
 
-export function FlightModal({flightNumber}: Props) {
-  const flight = useMemo(() => 
-    {
-      return FLIGHTS.find(flight => flight.flightInfo.flightNumber === flightNumber)!
-    }, [flightNumber]);
-  
-  return createPortal(
-    <div className={`modal_info ${flight && "active"}`}>
+	return createPortal(
+		<div className={`modal_info ${flight && 'active'}`}>
+			<PlaneInfo flight={flight} />
 
-      <PlaneInfo flight={flight}/>
+			<div className='general_info'>
+				<FlightInfo flight={flight} />
 
-      <div className="general_info">
+				<MultiFlightInfo flight={flight} />
 
-        <FlightInfo flight={flight}/>
-
-        <MultiFlightInfo flight={flight} />
-        
-
-
-        <FlightAction 
-          onRoute={() => {}}
-          onFollow={() => {}}
-          onMore={() => {}}
-          onShare={() => {}}
-        />
-
-      </div>
-    </div>,
-    document.body
-  )
+				<FlightAction
+					onRoute={() => {}}
+					onFollow={() => {}}
+					onMore={() => {}}
+					onShare={() => {}}
+				/>
+			</div>
+		</div>,
+		document.body
+	)
 }
