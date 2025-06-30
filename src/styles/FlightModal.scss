@@ -20,14 +20,14 @@
 	background-color: color.$primary-color-white;
 	overflow: hidden;
 	border-radius: 12px;
-	width: 30%;
+	width: 470px;
 	transition: all 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 	animation: out_in 0.5s;
 	& * {
 		transition: all 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 	}
 	overflow-y: auto;
-	height: 98vh;
+	height: 880px;
 }
 
 .general_info {
@@ -59,7 +59,7 @@
 
 @media (max-width: 900px) {
 	.modal_info {
-		width: 50%;
+		width: 45%;
 	}
 }
 

@@ -1,7 +1,7 @@
 .flight_list {
 	position: fixed;
 	overflow-y: auto;
-	width: 30%;
+	width: 500px;
 	top: 0;
 	left: 0;
 	height: 100vh;
@@ -21,19 +21,28 @@
 @media (max-width: 1300px) {
 	.flight_list {
 		top: 120px;
+		width: 30%;
 		height: 88vh;
 	}
 }
 
 @media (max-width: 1300px) {
 	.flight_list {
-		width: 40%;
+		width: 50%;
 	}
 }
 
 @media (max-width: 900px) {
 	.flight_list {
-		width: 50%;
+		display: none;
+		width: 45%;
+	}
+
+	.flight_list.active {
+		display: flex;
+		width: 45%;
+		background: transparent;
+		animation: in_out 0.5s;
 	}
 }
 

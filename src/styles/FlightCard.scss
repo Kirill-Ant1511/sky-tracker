@@ -1,7 +1,7 @@
 @use '../constants/colors.scss' as color;
 
 .card {
-	width: 90%;
+	width: 450px;
 	height: 210px;
 	display: flex;
 	flex-direction: column;
@@ -68,5 +68,17 @@
 
 	.flight_number {
 		background-color: color.$primary-color-black;
+	}
+}
+
+@media (max-width: 900px) {
+	.card {
+		width: 300px;
+	}
+}
+
+@media (max-width: 700px) {
+	.card {
+		width: 90%;
 	}
 }
