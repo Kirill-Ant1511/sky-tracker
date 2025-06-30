@@ -1,0 +1,21 @@
+@use '../constants/colors.scss' as color;
+.toggle_button {
+	display: flex;
+	gap: 5px;
+	border-radius: 100px;
+	overflow: hidden;
+}
+
+.toggle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	border-radius: 100px;
+	transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.active {
+	background-color: color.$primary-color-gray;
+}

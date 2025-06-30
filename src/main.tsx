@@ -1,29 +1,29 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router'
-import { ThemeProfider } from './components/providers/theme/ThemeProvider.tsx'
+import { ThemeProvider } from './components/providers/theme/ThemeProvider.tsx'
 import { Layout } from './components/ui/Layout.tsx'
+import { Pages } from './configs/router.config.ts'
 import { Home } from './Home.tsx'
 import './index.css'
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
-		<ThemeProfider>
+		<ThemeProvider>
 			<BrowserRouter>
 				<Routes>
 					<Route element={<Layout />}>
 						<Route
-							path='/'
+							path={Pages.BASE}
 							element={<Home />}
 						/>
-
 						<Route
-							path='/:flightNumber'
+							path={Pages.FLIGHT_INFO}
 							element={<Home />}
 						/>
 					</Route>
 				</Routes>
 			</BrowserRouter>
-		</ThemeProfider>
+		</ThemeProvider>
 	</StrictMode>
 )

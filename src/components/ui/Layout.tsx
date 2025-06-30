@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router'
-import { ToggleButton } from './ToggleBottom'
-
+import '../../styles/Layout.scss'
+import Header from './Header'
 export function Layout() {
 	return (
-		<div className='bg-neutral-800 dark:bg-neutral-100'>
-			<ToggleButton />
+		<div className='layout'>
+			<Header />
 			<Outlet />
 		</div>
 	)

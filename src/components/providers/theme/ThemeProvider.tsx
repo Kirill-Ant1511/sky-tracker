@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { ThemeContext } from './theme.context'
 
-export function ThemeProfider({ children }: { children: ReactNode }) {
+export function ThemeProvider({ children }: { children: ReactNode }) {
 	const [theme, setTheme] = useState(
 		() => localStorage.getItem('theme') || 'dark'
 	)

@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import '../../styles/StatusBar.scss'
 import type { IFlight } from '../../types/IFlight'
 export interface Props {
@@ -7,7 +8,7 @@ export interface Props {
 	onChange: () => void
 }
 
-export function StatusBar({ flight, min, max, onChange }: Props) {
+function StatusBar({ flight, min, max, onChange }: Props) {
 	return (
 		<input
 			type='range'
@@ -18,3 +19,5 @@ export function StatusBar({ flight, min, max, onChange }: Props) {
 		/>
 	)
 }
+
+export default memo(StatusBar)

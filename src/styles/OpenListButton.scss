@@ -1,0 +1,31 @@
+@use '../constants/colors.scss' as color;
+
+.button {
+	display: none;
+	rotate: -90deg;
+}
+
+.button.active {
+	rotate: 0deg;
+}
+
+@media (max-width: 700px) {
+	.button {
+		display: block;
+		position: fixed;
+		left: 10px;
+		top: 80px;
+		padding: 5px;
+		background-color: color.$primary-color-white;
+		color: color.$primary-color-dark;
+		transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+		border-radius: 100px;
+	}
+
+	.dark {
+		.button {
+			color: color.$primary-color-white;
+			background-color: color.$primary-color-dark;
+		}
+	}
+}

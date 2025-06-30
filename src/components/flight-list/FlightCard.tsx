@@ -2,7 +2,7 @@ import { memo } from 'react'
 import { useNavigate } from 'react-router'
 import '../../styles/FlightCard.scss'
 import type { IFlight } from '../../types/IFlight'
-import { StatusBar } from '../ui/StatusBar'
+import StatusBar from '../ui/StatusBar'
 
 interface Props {
 	flight: IFlight

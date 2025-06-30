@@ -1,6 +1,6 @@
 import '../../../styles/FlyghtInfo.scss'
 import type { IFlight } from '../../../types/IFlight'
-import { StatusBar } from '../../ui/StatusBar'
+import StatusBar from '../../ui/StatusBar'
 export interface Props {
 	flight: IFlight
 }
