@@ -1,5 +1,5 @@
+import { useTheme } from '../../providers/theme/useTheme'
 import '../../styles/ToggleButton.scss'
-import { useTheme } from '../providers/theme/useTheme'
 export function ToggleButton() {
 	const { theme, toggleTheme } = useTheme()
 

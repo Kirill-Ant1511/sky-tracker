@@ -1,20 +1,46 @@
+@use '../constants/colors.scss' as color;
+
+.flights_content {
+	position: relative;
+	display: inline-flex;
+	flex-direction: column;
+	align-items: start;
+	margin: 20px;
+}
+
+.filter_block {
+	display: flex;
+	gap: 20px;
+}
+
 .flight_list {
-	position: fixed;
+	position: relative;
 	overflow-y: auto;
-	width: 500px;
-	top: 0;
-	left: 0;
-	height: 100vh;
+	width: 600px;
+	height: 82vh;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: start;
 	transition: all 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 	overscroll-behavior: contain;
 	background: transparent;
 	&::-webkit-scrollbar {
 		display: none;
+	}
+}
+
+input[type='search'] {
+	padding: 10px;
+	border-radius: 100px;
+	background-color: #fff;
+}
+
+.dark {
+	input[type='search'] {
+		background-color: color.$primary-color-black;
+		color: color.$primary-color-white;
 	}
 }
 

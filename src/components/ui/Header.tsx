@@ -12,11 +12,14 @@ function Header() {
 				to={Pages.BASE}
 				className='logo'
 			>
+				Sky
 				<PlaneLanding />
-				<h1>Sky Tracker</h1>
+				Tracker
 			</Link>
-			<Link to={Pages.BASE}>Home</Link>
-			<Link to={Pages.FOLLOW}>Follow</Link>
+			<div className='route'>
+				<Link to={Pages.BASE}>Home</Link>
+				<Link to={Pages.FOLLOW}>Follow</Link>
+			</div>
 			<ToggleButton />
 		</header>
 	)

@@ -1,12 +1,13 @@
 @use '../constants/colors.scss' as color;
 
 .card {
+	position: relative;
 	width: 450px;
 	height: 210px;
 	display: flex;
 	flex-direction: column;
 	gap: 40px;
-	margin: 20px;
+	margin: 20px 0;
 	padding: 20px;
 	border-radius: 15px;
 	background-color: color.$primary-color-white;
@@ -26,6 +27,10 @@
 
 .card:hover {
 	border: 3px solid color.$primary-color-orange;
+	.bg-follow {
+		opacity: 1;
+		right: -70px;
+	}
 }
 
 .airplane_info {

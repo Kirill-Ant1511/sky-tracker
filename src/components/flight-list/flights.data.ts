@@ -29,7 +29,7 @@ export const FLIGHTS: IFlight[] = [
 		altitude: 10200,
 		createCountry: '🇹🇷 Turkish',
 
-		status: 60
+		status: 85
 	},
 
 	{
@@ -59,7 +59,7 @@ export const FLIGHTS: IFlight[] = [
 		altitude: 11220,
 		createCountry: '🇮🇪 Ireland',
 
-		status: 60
+		status: 95
 	},
 
 	{
@@ -88,7 +88,7 @@ export const FLIGHTS: IFlight[] = [
 		altitude: 11220,
 		createCountry: '🇮🇪 Ireland',
 
-		status: 60
+		status: 40
 	},
 
 	{

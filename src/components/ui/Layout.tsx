@@ -4,7 +4,10 @@ import Header from './Header'
 export function Layout() {
 	return (
 		<div className='layout'>
-			<Header />
+			<div className='layout_header'>
+				<Header />
+			</div>
+
 			<Outlet />
 		</div>
 	)

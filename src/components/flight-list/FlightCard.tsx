@@ -2,6 +2,7 @@ import { memo } from 'react'
 import { useNavigate } from 'react-router'
 import '../../styles/FlightCard.scss'
 import type { IFlight } from '../../types/IFlight'
+import { FlightActionsButton } from '../flight-actions/FlightActionsButton'
 import StatusBar from '../ui/StatusBar'
 
 interface Props {
@@ -19,6 +20,7 @@ function FlightCard({ flight }: Props) {
 			className='card'
 			onClick={setPathname}
 		>
+			<FlightActionsButton flightNumber={flight.flightInfo.flightNumber} />
 			<div className='airplane_info'>
 				<div className='airplane_company'>
 					<img src={flight.company.logo} />
