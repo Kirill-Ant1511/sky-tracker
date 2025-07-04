@@ -10,7 +10,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 		document.documentElement.classList.toggle('dark', theme === 'dark')
 		localStorage.setItem('theme', theme)
 	}, [theme])
-
 	const toggleTheme = () => {
 		setTheme(prev => (prev === 'dark' ? 'light' : 'dark'))
 	}

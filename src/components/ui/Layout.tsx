@@ -1,14 +1,16 @@
 import { Outlet } from 'react-router'
-import '../../styles/Layout.scss'
+
 import Header from './Header'
 export function Layout() {
 	return (
-		<div className='layout'>
-			<div className='layout_header'>
+		<div className='w-[100vw] dark:bg-white/5 bg-white/80 min-h-screen p-3'>
+			<div className='flex justify-center items-center'>
 				<Header />
 			</div>
 
-			<Outlet />
+			<main>
+				<Outlet />
+			</main>
 		</div>
 	)
 }

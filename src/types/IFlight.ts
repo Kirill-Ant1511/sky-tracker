@@ -14,12 +14,12 @@ export interface IFlight {
 		from: string
 		fromCode: string
 		fromTimestamp: string
-		fromSheduled: Date
+		fromScheduled: Date
 		to: string
 		toCode: string
 		toTimestamp: string
-		toSheduled: Date
-		totalDistace: number
+		toScheduled: Date
+		totalDistance: number
 	}
 	speed: number
 	altitude: number

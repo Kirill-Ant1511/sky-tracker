@@ -11,14 +11,13 @@
 	font-weight: 400;
 
 	color-scheme: light dark;
-	color: rgba(0, 0, 0, 0.87);
-	background-color: #fff;
+	color: rgb(0, 0, 0);
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background-image: url('/background.jpg');
+	background-color: #000;
 	background-size: auto;
 }
 
@@ -27,4 +26,22 @@ body {
 	min-width: 100vw;
 	min-height: 100vh;
 	display: flex;
+}
+
+@layer utilities {
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+	.no-scrollbar {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
+
+	.m_overflow-y-scroll {
+		overflow-y: scroll;
+	}
+
+	.m_overflow-x-visible {
+		overflow-x: visible;
+	}
 }

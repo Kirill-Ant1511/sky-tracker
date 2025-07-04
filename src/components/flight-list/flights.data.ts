@@ -21,9 +21,9 @@ export const FLIGHTS: IFlight[] = [
 			to: 'Beijing',
 			toCode: 'PEK',
 			toTimestamp: 'UTC+4',
-			totalDistace: 3756,
-			fromSheduled: new Date(),
-			toSheduled: new Date()
+			totalDistance: 3756,
+			fromScheduled: new Date(),
+			toScheduled: new Date()
 		},
 		speed: 800,
 		altitude: 10200,
@@ -51,9 +51,9 @@ export const FLIGHTS: IFlight[] = [
 			to: 'Laranca',
 			toCode: 'LCA',
 			toTimestamp: 'UTC+4',
-			totalDistace: 3756,
-			fromSheduled: new Date(),
-			toSheduled: new Date()
+			totalDistance: 3756,
+			fromScheduled: new Date(),
+			toScheduled: new Date()
 		},
 		speed: 780,
 		altitude: 11220,
@@ -80,9 +80,9 @@ export const FLIGHTS: IFlight[] = [
 			to: 'Tbilisi',
 			toCode: 'TBS',
 			toTimestamp: 'UTC+4',
-			totalDistace: 3756,
-			fromSheduled: new Date(),
-			toSheduled: new Date()
+			totalDistance: 3756,
+			fromScheduled: new Date(),
+			toScheduled: new Date()
 		},
 		speed: 780,
 		altitude: 11220,
@@ -109,9 +109,9 @@ export const FLIGHTS: IFlight[] = [
 			to: 'Baku',
 			toCode: 'GYD',
 			toTimestamp: 'UTC+4',
-			totalDistace: 3756,
-			fromSheduled: new Date(),
-			toSheduled: new Date()
+			totalDistance: 3756,
+			fromScheduled: new Date(),
+			toScheduled: new Date()
 		},
 
 		speed: 780,
@@ -139,9 +139,9 @@ export const FLIGHTS: IFlight[] = [
 			to: 'Muscat',
 			toCode: 'MCT',
 			toTimestamp: 'UTC+4',
-			fromSheduled: new Date(),
-			toSheduled: new Date(),
-			totalDistace: 3756
+			fromScheduled: new Date(),
+			toScheduled: new Date(),
+			totalDistance: 3756
 		},
 
 		speed: 780,

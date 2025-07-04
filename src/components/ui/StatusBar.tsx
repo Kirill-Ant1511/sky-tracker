@@ -1,18 +1,17 @@
-import { memo } from 'react'
+import { memo, type ChangeEvent } from 'react'
 import '../../styles/StatusBar.scss'
-import type { IFlight } from '../../types/IFlight'
 export interface Props {
-	flight: IFlight
+	status: number
 	min: number
 	max: number
-	onChange: () => void
+	onChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-function StatusBar({ flight, min, max, onChange }: Props) {
+function StatusBar({ status, min, max, onChange }: Props) {
 	return (
 		<input
 			type='range'
-			value={flight.status}
+			value={status}
 			min={min}
 			max={max}
 			onChange={onChange}

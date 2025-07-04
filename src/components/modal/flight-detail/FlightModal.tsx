@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { createPortal } from 'react-dom'
-import '../../../styles/FlightModal.scss'
+
 import { FLIGHTS } from '../../flight-list/flights.data'
 import { FlightAction } from './FlightActions'
 import { FlightInfo } from './FlightInfo'
@@ -18,10 +18,10 @@ export function FlightModal({ flightNumber }: Props) {
 	}, [flightNumber])
 
 	return createPortal(
-		<div className={`modal_info ${flight && 'active'}`}>
+		<div className='absolute right-10 top-25 bg-white dark:bg-black overflow-y-auto rounded-2xl h-[82%] w-[450px] no-scrollbar text-black dark:text-white transition-all duration-300'>
 			<PlaneInfo flight={flight} />
 
-			<div className='general_info'>
+			<div className='flex flex-col items-center gap-2 pt-5'>
 				<FlightInfo flight={flight} />
 
 				<MultiFlightInfo flight={flight} />
