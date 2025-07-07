@@ -1,7 +1,9 @@
-import { useMemo } from 'react'
+import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 
+import type { IFlight } from '../../../types/IFlight'
 import { FLIGHTS } from '../../flight-list/flights.data'
+import { SkeletonDetailLoader } from '../../loader/skeleton/SkeletonDetailLoader'
 import { FlightAction } from './FlightActions'
 import { FlightInfo } from './FlightInfo'
 import { MultiFlightInfo } from './MultiFlightInfo'
@@ -11,28 +13,36 @@ interface Props {
 }
 
 export function FlightModal({ flightNumber }: Props) {
-	const flight = useMemo(() => {
-		return FLIGHTS.find(
-			flight => flight.flightInfo.flightNumber === flightNumber
-		)!
+	const [flight, setFlight] = useState<IFlight | undefined>(undefined)
+	useEffect(() => {
+		setTimeout(() => {
+			setFlight(
+				FLIGHTS.find(flight => flight.flightInfo.flightNumber === flightNumber)!
+			)
+		}, 1000)
 	}, [flightNumber])
 
 	return createPortal(
-		<div className='absolute right-10 top-25 bg-white dark:bg-black overflow-y-auto rounded-2xl h-[82%] w-[450px] no-scrollbar text-black dark:text-white transition-all duration-300'>
-			<PlaneInfo flight={flight} />
+		<div className='absolute right-10 top-25 bg-white dark:bg-black overflow-y-auto rounded-2xl h-[82%] w-[450px] no-scrollbar text-black dark:text-white transition-all duration-300 pb-2'>
+			{flight ? (
+				<>
+					<PlaneInfo flight={flight!} />
+					<div className='flex flex-col items-center gap-2 pt-5'>
+						<FlightInfo flight={flight!} />
 
-			<div className='flex flex-col items-center gap-2 pt-5'>
-				<FlightInfo flight={flight} />
+						<MultiFlightInfo flight={flight!} />
 
-				<MultiFlightInfo flight={flight} />
-
-				<FlightAction
-					onRoute={() => {}}
-					onFollow={() => {}}
-					onMore={() => {}}
-					onShare={() => {}}
-				/>
-			</div>
+						<FlightAction
+							onRoute={() => {}}
+							onFollow={() => {}}
+							onMore={() => {}}
+							onShare={() => {}}
+						/>
+					</div>
+				</>
+			) : (
+				<SkeletonDetailLoader />
+			)}
 		</div>,
 		document.body
 	)
