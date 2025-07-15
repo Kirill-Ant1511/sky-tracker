@@ -12,7 +12,7 @@ export function Follow() {
   }, [favorites]);
 
   return (
-    <div className="flex flex-col items-center gap-5 py-10 text-black dark:text-white">
+    <div className="flex flex-col items-center gap-5 py-10 text-foreground">
       <div className="w-[40%] text-center max-md:w-[80%]">
         <h1 className="text-4xl text-amber-500">FOLLOW</h1>
         <p>Here, you can see your follow flight</p>

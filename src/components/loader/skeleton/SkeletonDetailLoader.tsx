@@ -1,6 +1,6 @@
 export function SkeletonDetailLoader() {
 	return (
-		<div className='w-full h-full flex flex-col items-center justify-between space-y-2.5'>
+		<div className='w-[100%] h-full flex flex-col items-center justify-between space-y-2.5'>
 			<div className='bg-neutral-200 dark:bg-neutral-600 w-full h-[50%] p-2 flex justify-center animate-pulse'>
 				<div className='bg-neutral-300 dark:bg-neutral-700 w-60 h-15 rounded-2xl animate-pulse' />
 			</div>

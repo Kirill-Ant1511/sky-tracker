@@ -1,6 +1,6 @@
 export function SkeletonFlightCard() {
 	return (
-		<div className='w-[450px]  bg-neutral-50 dark:bg-neutral-700 rounded-2xl p-4 space-y-5 '>
+		<div className='w-[100%] bg-background rounded-2xl p-4 space-y-5'>
 			<div className='flex justify-between items-center'>
 				<div className='flex gap-2 items-center'>
 					<div className='w-12 h-12 rounded-full bg-neutral-200 dark:bg-neutral-600 animate-pulse' />

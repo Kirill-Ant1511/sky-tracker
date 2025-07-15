@@ -1,11 +1,11 @@
-import { FlightList } from "../../components/flight-list/FlightList";
+import { FlightList } from '../../components/flight-list/FlightList'
 
 export function Home() {
-  return (
-    <>
-      <div>
-        <FlightList />
-      </div>
-    </>
-  );
+	return (
+		<>
+			<div>
+				<FlightList />
+			</div>
+		</>
+	)
 }

@@ -11,15 +11,13 @@ export function PlaneInfo({ flight }: Props) {
 	}
 	return (
 		<div className='bg-linear-to-tl from-sky-400 to-blue-600 flex flex-col items-center p-2'>
-			<div className='flex w-[80%] bg-white justify-between items-center py-2 px-5 dark:bg-black rounded-2xl'>
+			<div className='flex w-[80%] bg-background justify-between items-center py-2 px-5 d rounded-2xl'>
 				<div>
 					<p className='text-xl text-amber-500'>{flight.plane.planeNumber}</p>
-					<p className='text-sm text-black dark:text-white'>
-						{flight.company.name}
-					</p>
+					<p className='text-sm text-foreground/70'>{flight.company.name}</p>
 				</div>
 				<button
-					className='flex justify-center items-center w-8 h-8 p-2 bg-white/60 rounded-full'
+					className='flex justify-center items-center w-8 h-8 p-2 bg-secondary rounded-full'
 					onClick={closeModal}
 				>
 					❌
