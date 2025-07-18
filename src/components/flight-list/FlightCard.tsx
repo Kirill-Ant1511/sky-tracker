@@ -43,21 +43,16 @@ function FlightCard({ flight, isList }: Props) {
 					</div>
 				</div>
 
-				<div className='flex'>
+				<div className='grid grid-cols-[1fr_2fr_1fr] items-center'>
 					<div>
-						<span className='text-xl'>{flight.flightInfo.from}</span>
-						<h1 className='text-2xl'>{flight.flightInfo.fromCode}</h1>
+						<span className='text-xl'>{flight.flightInfo.from.name}</span>
+						<h1 className='text-2xl'>{flight.flightInfo.from.code}</h1>
 					</div>
 
-					<StatusBar
-						status={flight.status}
-						min={0}
-						max={100}
-						onChange={() => {}}
-					/>
+					<StatusBar status={flight.status} />
 					<div>
-						<span className='text-xl'>{flight.flightInfo.to}</span>
-						<h1 className='text-2xl'>{flight.flightInfo.toCode}</h1>
+						<span className='text-xl'>{flight.flightInfo.to.name}</span>
+						<h1 className='text-2xl'>{flight.flightInfo.to.code}</h1>
 					</div>
 				</div>
 			</button>

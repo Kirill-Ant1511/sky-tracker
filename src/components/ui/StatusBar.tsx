@@ -1,21 +1,27 @@
-import { memo, type ChangeEvent } from 'react'
-import '../../styles/StatusBar.scss'
+import { memo } from 'react'
+import { useTheme } from '../../providers/theme/useTheme'
 export interface Props {
 	status: number
-	min: number
-	max: number
-	onChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-function StatusBar({ status, min, max, onChange }: Props) {
+function StatusBar({ status }: Props) {
+	const { theme } = useTheme()
 	return (
-		<input
-			type='range'
-			value={status}
-			min={min}
-			max={max}
-			onChange={onChange}
-		/>
+		<div className='w-full bg-primary h-1 flex items-center rounded-full m-1'>
+			<div
+				className='bg-amber-500 h-1 flex items-center justify-end rounded-full'
+				style={{
+					width: `${status}%`
+				}}
+			>
+				<img
+					src={theme === 'dark' ? '/plane.svg' : '/plane-dark.svg'}
+					alt='plane'
+					width={20}
+					height={20}
+				/>
+			</div>
+		</div>
 	)
 }
 

@@ -1,6 +1,5 @@
-import { Outlet, useLocation } from 'react-router'
-
 import { useMemo } from 'react'
+import { Outlet, useLocation } from 'react-router'
 import { Pages } from '../../configs/router.config'
 import { Map } from '../../pages/Home/Map/Map'
 import Header from './Header'

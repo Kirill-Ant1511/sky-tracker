@@ -1,5 +1,60 @@
 import type { IFlight } from '../../types/IFlight'
 
+export function getCurrentLocation(
+	from: [number, number],
+	to: [number, number],
+	progress: number
+): [number, number] {
+	const clamp = (val: number, min: number, max: number) =>
+		Math.max(min, Math.min(max, val))
+	const p = clamp(progress, 0, 100) / 100
+	const lat = from[0] + (to[0] - from[0]) * p
+	const lng = from[1] + (to[1] - from[1]) * p
+	return [lat, lng]
+}
+// export const COUNTRIES: CountryPosition[] = [
+// 	{
+// 		name: 'Sofia',
+// 		position: [42.6977, 23.3219]
+// 	},
+// 	{
+// 		name: 'Beijing',
+// 		position: [39.9042, 116.4074]
+// 	},
+// 	{
+// 		name: 'Dublin',
+// 		position: [53.3498, -6.2603]
+// 	},
+// 	{
+// 		name: 'Larnaca',
+// 		position: [34.9167, 33.6233]
+// 	},
+// 	{
+// 		name: 'Nice',
+// 		position: [43.7102, 7.262]
+// 	},
+// 	{
+// 		name: 'Porto',
+// 		position: [41.1579, -8.6291]
+// 	},
+// 	{
+// 		name: 'Baku',
+// 		position: [40.4093, 49.8671]
+// 	},
+// 	{
+// 		name: 'Burgas',
+// 		position: [42.5048, 27.4716]
+// 	},
+// 	{
+// 		name: 'Muscat',
+// 		position: [23.588, 58.3829]
+// 	},
+// 	{
+// 		name: 'Tbilisi',
+// 		position: [41.7151, 44.8271]
+// 	}
+// ]
+
 export const FLIGHTS: IFlight[] = [
 	{
 		company: {
@@ -15,16 +70,28 @@ export const FLIGHTS: IFlight[] = [
 
 		flightInfo: {
 			flightNumber: 'TC-JFP',
-			from: 'Sofia',
-			fromCode: 'SOF',
-			fromTimestamp: 'UTC+2',
-			to: 'Beijing',
-			toCode: 'PEK',
-			toTimestamp: 'UTC+4',
-			totalDistance: 3756,
-			fromScheduled: new Date(),
-			toScheduled: new Date()
+			from: {
+				name: 'Sofia',
+				code: 'SOF',
+				timestamp: 'UTC+2',
+				scheduled: new Date(),
+				coordinates: [42.6977, 23.3219]
+			},
+			to: {
+				name: 'Beijing',
+				code: 'PEK',
+				timestamp: 'UTC+4',
+				scheduled: new Date(),
+				coordinates: [39.9042, 116.4074]
+			},
+
+			totalDistance: 3756
 		},
+		currentLocation: getCurrentLocation(
+			[42.6977, 23.3219],
+			[39.9042, 116.4074],
+			85
+		),
 		speed: 800,
 		altitude: 10200,
 		createCountry: '🇹🇷 Turkish',
@@ -45,16 +112,27 @@ export const FLIGHTS: IFlight[] = [
 
 		flightInfo: {
 			flightNumber: 'D-AISP',
-			from: 'Dublin',
-			fromCode: 'DUB',
-			fromTimestamp: 'UTC+2',
-			to: 'Laranca',
-			toCode: 'LCA',
-			toTimestamp: 'UTC+4',
-			totalDistance: 3756,
-			fromScheduled: new Date(),
-			toScheduled: new Date()
+			from: {
+				name: 'Dublin',
+				code: 'DUB',
+				timestamp: 'UTC+2',
+				scheduled: new Date(),
+				coordinates: [53.3498, -6.2603]
+			},
+			to: {
+				name: 'Larnaca',
+				code: 'LCA',
+				timestamp: 'UTC+4',
+				scheduled: new Date(),
+				coordinates: [34.9167, 33.6233]
+			},
+			totalDistance: 3756
 		},
+		currentLocation: getCurrentLocation(
+			[53.3498, -6.2603],
+			[34.9167, 33.6233],
+			95
+		),
 		speed: 780,
 		altitude: 11220,
 		createCountry: '🇮🇪 Ireland',
@@ -74,16 +152,28 @@ export const FLIGHTS: IFlight[] = [
 		},
 		flightInfo: {
 			flightNumber: 'RA-74415',
-			from: 'Nice',
-			fromCode: 'NCE',
-			fromTimestamp: 'UTC+2',
-			to: 'Tbilisi',
-			toCode: 'TBS',
-			toTimestamp: 'UTC+4',
 			totalDistance: 3756,
-			fromScheduled: new Date(),
-			toScheduled: new Date()
+
+			from: {
+				name: 'Nice',
+				code: 'NCE',
+				timestamp: 'UTC+2',
+				scheduled: new Date(),
+				coordinates: [43.7102, 7.262]
+			},
+			to: {
+				name: 'Tbilisi',
+				code: 'TBS',
+				timestamp: 'UTC+4',
+				scheduled: new Date(),
+				coordinates: [41.7151, 44.8271]
+			}
 		},
+		currentLocation: getCurrentLocation(
+			[43.7102, 7.262],
+			[41.7151, 44.8271],
+			40
+		),
 		speed: 780,
 		altitude: 11220,
 		createCountry: '🇮🇪 Ireland',
@@ -103,17 +193,27 @@ export const FLIGHTS: IFlight[] = [
 		},
 		flightInfo: {
 			flightNumber: 'HB-JHK',
-			from: 'Porto',
-			fromCode: 'OPO',
-			fromTimestamp: 'UTC+2',
-			to: 'Baku',
-			toCode: 'GYD',
-			toTimestamp: 'UTC+4',
-			totalDistance: 3756,
-			fromScheduled: new Date(),
-			toScheduled: new Date()
+			from: {
+				name: 'Porto',
+				code: 'OPO',
+				timestamp: 'UTC+2',
+				scheduled: new Date(),
+				coordinates: [41.1579, -8.6291]
+			},
+			to: {
+				name: 'Baku',
+				code: 'GYD',
+				timestamp: 'UTC+4',
+				scheduled: new Date(),
+				coordinates: [40.4093, 49.8671]
+			},
+			totalDistance: 3756
 		},
-
+		currentLocation: getCurrentLocation(
+			[41.1579, -8.6291],
+			[40.4093, 49.8671],
+			60
+		),
 		speed: 780,
 		altitude: 11220,
 		createCountry: '🇮🇪 Ireland',
@@ -133,17 +233,27 @@ export const FLIGHTS: IFlight[] = [
 		},
 		flightInfo: {
 			flightNumber: 'D-AIXD',
-			from: 'Burgas',
-			fromCode: 'BOJ',
-			fromTimestamp: 'UTC+2',
-			to: 'Muscat',
-			toCode: 'MCT',
-			toTimestamp: 'UTC+4',
-			fromScheduled: new Date(),
-			toScheduled: new Date(),
+			from: {
+				name: 'Burgas',
+				code: 'BOJ',
+				timestamp: 'UTC+2',
+				scheduled: new Date(),
+				coordinates: [42.5048, 27.4716]
+			},
+			to: {
+				name: 'Muscat',
+				code: 'MCT',
+				timestamp: 'UTC+4',
+				scheduled: new Date(),
+				coordinates: [23.588, 58.3829]
+			},
 			totalDistance: 3756
 		},
-
+		currentLocation: getCurrentLocation(
+			[42.5048, 27.4716],
+			[23.588, 58.3829],
+			20
+		),
 		speed: 780,
 		altitude: 11220,
 		createCountry: '🇮🇪 Ireland',

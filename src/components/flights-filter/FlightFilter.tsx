@@ -17,13 +17,13 @@ export function FlightFilter({ setFlights }: Props) {
 	const debouncedToSearch = useDebounce(toSearch, 300)
 	useEffect(() => {
 		let result = FLIGHTS.filter(flight => {
-			return flight.flightInfo.from
+			return flight.flightInfo.from.name
 				.toLowerCase()
 				.includes(debouncedFromSearch.toLowerCase())
 		})
 		if (debouncedToSearch) {
 			result = result.filter(flight => {
-				return flight.flightInfo.to
+				return flight.flightInfo.to.name
 					.toLowerCase()
 					.includes(debouncedToSearch.toLowerCase())
 			})

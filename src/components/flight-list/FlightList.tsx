@@ -16,7 +16,7 @@ export function FlightList() {
 	const [isOpenList, setIsOpenList] = useState(true)
 
 	return (
-		<div className='w-[30%] 2xl:w-[20%] max-lg:w-[40%] flex justify-start max-md:w-full max-md:justify-center animate-loading-left md:ml-3 relative'>
+		<div className='w-[30%] max-lg:w-[40%] flex justify-start max-md:w-full max-md:justify-center animate-loading-left md:ml-3 relative'>
 			{flightNumber && <FlightModal flightNumber={flightNumber} />}
 			<button
 				onClick={() => setIsOpenList(!isOpenList)}
@@ -31,7 +31,7 @@ export function FlightList() {
 			</button>
 			{isOpenList && (
 				<div className='flex flex-col gap-2 max-xl:gap-4 items-start my-5 max-md:items-center animation-out-in'>
-					<div className='flex gap-2 w-[80%] max-sm:w-[100%] justify-center max-xl:justify-start max-lg:justify-center ml-5 self-start'>
+					<div className='flex gap-2 w-[80%] max-sm:w-[100%] xl:justify-start justify-center max-xl:justify-start max-lg:justify-center ml-5 self-start'>
 						<FlightFilter setFlights={setFlights} />
 					</div>
 					{flights.length !== 0 ? (

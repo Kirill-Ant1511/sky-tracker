@@ -29,7 +29,7 @@ export function FlightModal({ flightNumber }: Props) {
 			setFlight(
 				FLIGHTS.find(flight => flight.flightInfo.flightNumber === flightNumber)!
 			)
-		}, 1000)
+		}, 1)
 		return () => clearTimeout(handle)
 	}, [flightNumber])
 
@@ -42,7 +42,7 @@ export function FlightModal({ flightNumber }: Props) {
 	}, [flightNumber, dispatch, isFavorite])
 
 	return createPortal(
-		<div className='absolute right-10 top-25 bg-secondary md:overflow-y-auto rounded-2xl h-[82%] max-xl:w-[45%] md:no-scrollbar text-foreground transition-all duration-300 pb-2 max-md:w-full max-md:top-[2%] max-md:right-0 max-md:h-[850px] max-lg:right-5 max-md:animation_down_up no-scrollbar animate-loading-bottom z-50'>
+		<div className='absolute right-10 top-25 bg-secondary md:overflow-y-auto rounded-2xl h-[82%] 2xl:h-[830px] max-xl:w-[45%] md:no-scrollbar text-foreground transition-all duration-300 pb-2 max-md:w-full max-md:top-[2%] max-md:right-0 max-md:h-[850px] max-lg:right-5 max-md:animation_down_up no-scrollbar animate-loading-bottom z-50'>
 			{flight ? (
 				<>
 					<PlaneInfo flight={flight!} />

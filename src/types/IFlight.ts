@@ -1,3 +1,5 @@
+import type { LatLngExpression } from 'leaflet'
+
 export interface IFlight {
 	company: {
 		logo: string
@@ -11,16 +13,24 @@ export interface IFlight {
 
 	flightInfo: {
 		flightNumber: string
-		from: string
-		fromCode: string
-		fromTimestamp: string
-		fromScheduled: Date
-		to: string
-		toCode: string
-		toTimestamp: string
-		toScheduled: Date
+		from: {
+			name: string
+			code: string
+			timestamp: string
+			scheduled: Date
+			coordinates: LatLngExpression
+		}
+		to: {
+			name: string
+			code: string
+			timestamp: string
+			scheduled: Date
+			coordinates: LatLngExpression
+		}
 		totalDistance: number
 	}
+
+	currentLocation: LatLngExpression
 	speed: number
 	altitude: number
 	createCountry: string
