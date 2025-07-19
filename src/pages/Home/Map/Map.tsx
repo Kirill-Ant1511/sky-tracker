@@ -20,6 +20,7 @@ export function Map() {
 	const { theme } = useTheme()
 	const [mapTheme, setMapTheme] = useState('')
 	const { flightNumber } = useParams()
+	const [mapError, setMapError] = useState(false)
 	const ref = useRef<MapRef>(null)
 
 	const flight = useMemo(
@@ -43,11 +44,39 @@ export function Map() {
 			const [lat, lng] = flight.currentLocation as [number, number]
 			ref.current.setView([lat, lng])
 		}
+		ref.current?.addEventListener('load', () => {
+			console.log('Map is loaded')
+		})
+
+		ref.current?.addEventListener('error', error => {
+			setMapError(true)
+			console.log(error)
+		})
 	}, [theme, flight])
 
 	const navigate = useNavigate()
 	const setPathname = (flight: IFlight) => {
 		navigate(`/${flight.flightInfo.flightNumber}`)
+	}
+
+	if (mapError) {
+		return (
+			<div className='fixed w-screen h-screen flex justify-center items-center bg-white/40 text-foreground'>
+				<div className='flex gap-2 flex-col items-center w-64 bg-background py-3 px-4 rounded-lg'>
+					<h1 className='text-2xl text-amber-500'>ERROR</h1>
+					<div className='flex flex-col items-center gap-3'>
+						<div className='p-2 bg-primary rounded-2xl'>
+							<span className='text-amber-600'>Message:</span> Bad internet
+							connection
+						</div>
+						<div className='p-2 bg-primary rounded-2xl'>
+							<span className='text-amber-600'>Advice: </span> you can check
+							your internet connection and try reloading the page.
+						</div>
+					</div>
+				</div>
+			</div>
+		)
 	}
 
 	return (
