@@ -21,7 +21,7 @@ export function FlightInfo({ flight }: Props) {
 	return (
 		<div className='w-[95%] flex flex-col gap-1 rounded-2xl overflow-hidden'>
 			<div className='flex justify-around items-center gap-1'>
-				<div className='flex flex-col items-center bg-background w-[100%] py-3'>
+				<div className='flex flex-col items-center bg-background w-[100%] py-3 min-h-full text-center'>
 					<span className='text-3xl'>{flight.departure.iata}</span>
 					<span className='text-lg'>{flight.departure.airport}</span>
 					<span className='text-sm dark:text-white/50 text-black/50'>
@@ -29,14 +29,14 @@ export function FlightInfo({ flight }: Props) {
 					</span>
 				</div>
 
-				<div className='absolute flex justify-center items-center text-amber-500 w-12 h-12 bg-black rounded-full'>
+				<div className='absolute flex justify-center items-center text-amber-500 w-12 h-12 bg-secondary rounded-full'>
 					<Plane
 						width={28}
 						height={28}
 					/>
 				</div>
 
-				<div className='flex flex-col items-center bg-background w-[100%] py-3'>
+				<div className='flex flex-col items-center bg-background w-[100%] py-3 text-center'>
 					<span className='text-3xl'>{flight.arrival.iata}</span>
 					<span className='text-lg'>{flight.arrival.airport}</span>
 					<span className='text-sm dark:text-white/50 text-black/50'>
