@@ -1,10 +1,17 @@
+import { useEffect } from "react"
+
 export function Profile() {
+
+	useEffect(() => {
+		document.title = 'Sky Tracker | Profile'
+	}, [])
+
 	const profile = {
 		profileImage: 'https://avatars.githubusercontent.com/u/40864184',
 		name: 'Kirill',
 		lastName: 'Antonenko',
 		email: 'kirill@example.com',
-		age: 30,
+		age: 20,
 		location: 'Saint Petersburg'
 	}
 	return (

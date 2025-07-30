@@ -1,11 +1,11 @@
 import { memo } from 'react'
 import { useLocation, useNavigate } from 'react-router'
-import type { IFlight } from '../../types/IFlight'
+import type { FlightData } from '../../types/IFlight'
 import { FlightActionsButton } from '../flight-actions/FlightActionsButton'
 import StatusBar from '../ui/StatusBar'
 
 interface Props {
-	flight: IFlight
+	flight: FlightData
 	isList: boolean
 }
 
@@ -13,7 +13,7 @@ function FlightCard({ flight, isList }: Props) {
 	const navigate = useNavigate()
 	const { pathname } = useLocation()
 	const setPathname = () => {
-		navigate(`/${flight.flightInfo.flightNumber}`)
+		navigate(`/${flight.flight.iata}`)
 	}
 
 	return (
@@ -21,7 +21,7 @@ function FlightCard({ flight, isList }: Props) {
 			<FlightActionsButton flight={flight} />
 			<button
 				className={`flex flex-col bg-background text-foreground p-5 rounded-2xl gap-7 hover:border-3 hover:border-amber-400 transition-color duration-150 w-[100%] ${
-					pathname === '/' + flight.flightInfo.flightNumber
+					pathname === '/' + flight.flight.iata
 						? 'border-3 border-amber-400'
 						: ''
 				}`}
@@ -30,29 +30,29 @@ function FlightCard({ flight, isList }: Props) {
 				<div className='flex justify-between items-center h-full'>
 					<div className='flex items-center gap-2'>
 						<img
-							src={flight.company.logo}
+							src={`https://content.airhex.com/content/logos/airlines_${flight.airline.iata}_100_100_s.png`}
 							width={45}
 							className='rounded-full bg-cover bg-white object-cover'
 						/>
-						<span>{flight.plane.planeNumber}</span>
+						<span>{flight.flight.iata}</span>
 					</div>
 					<div className='flex gap-2'>
 						<span className='p-2 bg-secondary rounded-full'>
-							{flight.flightInfo.flightNumber}
+							{flight.flight.number}
 						</span>
 					</div>
 				</div>
 
 				<div className='grid grid-cols-[1fr_2fr_1fr] items-center'>
 					<div>
-						<span className='text-xl'>{flight.flightInfo.from.name}</span>
-						<h1 className='text-2xl'>{flight.flightInfo.from.code}</h1>
+						<span className='text-xl'>{flight.departure.airport}</span>
+						<h1 className='text-2xl'>{flight.departure.iata}</h1>
 					</div>
 
-					<StatusBar status={flight.status} />
+					<StatusBar status={50} />
 					<div>
-						<span className='text-xl'>{flight.flightInfo.to.name}</span>
-						<h1 className='text-2xl'>{flight.flightInfo.to.code}</h1>
+						<span className='text-xl'>{flight.arrival.airport}</span>
+						<h1 className='text-2xl'>{flight.arrival.iata}</h1>
 					</div>
 				</div>
 			</button>

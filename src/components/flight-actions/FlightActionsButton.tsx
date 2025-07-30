@@ -6,22 +6,22 @@ import {
 	addFavorite,
 	removeFavorite
 } from '../../store/favorite/favorite.slice'
-import type { IFlight } from '../../types/IFlight'
+import type { FlightData } from '../../types/IFlight'
 
 interface Props {
-	flight: IFlight
+	flight: FlightData
 }
 
 export function FlightActionsButton({ flight }: Props) {
 	const dispatch = useAppDispatch()
 	const favorites = useAppSelector(state => state.favorites)
-	const isFavorite = favorites.includes(flight.flightInfo.flightNumber)
+	const isFavorite = favorites.includes(flight.flight.number)
 
 	const onHandleClick = useCallback(() => {
 		if (!isFavorite) {
-			dispatch(addFavorite(flight.flightInfo.flightNumber))
+			dispatch(addFavorite(flight.flight.number))
 		} else {
-			dispatch(removeFavorite(flight.flightInfo.flightNumber))
+			dispatch(removeFavorite(flight.flight.number))
 		}
 	}, [dispatch, flight, isFavorite])
 	return (

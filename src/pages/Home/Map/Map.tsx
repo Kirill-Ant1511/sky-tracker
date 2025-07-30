@@ -1,33 +1,35 @@
-import { icon } from 'leaflet'
+import { icon, type LatLngExpression } from 'leaflet'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Marker, Polyline } from 'react-leaflet'
 import { MapContainer, type MapRef } from 'react-leaflet/MapContainer'
 import { TileLayer } from 'react-leaflet/TileLayer'
 import { useNavigate, useParams } from 'react-router'
-import { FLIGHTS } from '../../../components/flight-list/flights.data'
 import {
 	completeWayOptions,
 	remainingWeyOptions
 } from '../../../configs/polylines.config'
 import { useTheme } from '../../../providers/theme/useTheme'
-import type { IFlight } from '../../../types/IFlight'
+import type { FlightData } from '../../../types/IFlight'
+import { getAirportForIata } from '../../../utils/FlightRequests'
 
-// https://api.maptiler.com/maps/basic-v2-dark/{z}/{x}/{y}.png?key=MLTJjysWgncf12KujBil - black
-// https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=MLTJjysWgncf12KujBil - white
-// https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key=MLTJjysWgncf12KujBil - satellite
-export function Map() {
+interface Props {
+	flights: FlightData[]
+}
+
+export function Map({ flights }: Props) {
 	const { theme } = useTheme()
 	const [mapTheme, setMapTheme] = useState('')
 	const { flightNumber } = useParams()
 	const [mapError, setMapError] = useState(false)
+	const [depCoordinate, setDepCoordinate] = useState<LatLngExpression>()
+	const [arrCoordinate, setArrCoordinate] = useState<LatLngExpression>()
 	const ref = useRef<MapRef>(null)
 
-	const flight = useMemo(
-		() =>
-			FLIGHTS.find(flight => flight.flightInfo.flightNumber === flightNumber),
-		[flightNumber]
-	)
+	const flight = useMemo(() => {
+		const flight = flights.find(flight => flight.flight.iata === flightNumber)
+		return flight
+	}, [flights, flightNumber])
 
 	useEffect(() => {
 		if (theme === 'dark') {
@@ -39,9 +41,21 @@ export function Map() {
 				'https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=MLTJjysWgncf12KujBil'
 			)
 		}
+		if (flight) {
+			const getDepArrCoordinate = async () => {
+				const departureData = await getAirportForIata(flight.departure.iata)
+				const arrivalData = await getAirportForIata(flight.arrival.iata)
+				setDepCoordinate([
+					departureData[0].latitude,
+					departureData[0].longitude
+				])
+				setArrCoordinate([arrivalData[0].latitude, arrivalData[0].longitude])
+			}
+			getDepArrCoordinate()
+		}
 
-		if (ref.current && flight) {
-			const [lat, lng] = flight.currentLocation as [number, number]
+		if (ref.current && flight && depCoordinate) {
+			const [lat, lng] = depCoordinate as [number, number]
 			ref.current.setView([lat, lng])
 		}
 		ref.current?.addEventListener('load', () => {
@@ -55,13 +69,13 @@ export function Map() {
 	}, [theme, flight])
 
 	const navigate = useNavigate()
-	const setPathname = (flight: IFlight) => {
-		navigate(`/${flight.flightInfo.flightNumber}`)
+	const setPathname = (flight: FlightData) => {
+		navigate(`/${flight.flight.iata}`)
 	}
 
 	if (mapError) {
 		return (
-			<div className='fixed w-screen h-screen flex justify-center items-center bg-white/40 text-foreground'>
+			<div className='fixed top-0 min-w-screen min-h-screen flex justify-center items-center bg-white/40 text-foreground'>
 				<div className='flex gap-2 flex-col items-center w-64 bg-background py-3 px-4 rounded-lg'>
 					<h1 className='text-2xl text-amber-500'>ERROR</h1>
 					<div className='flex flex-col items-center gap-3'>
@@ -78,7 +92,6 @@ export function Map() {
 			</div>
 		)
 	}
-
 	return (
 		<MapContainer
 			center={[30, 60]}
@@ -86,28 +99,31 @@ export function Map() {
 			zoom={6}
 			scrollWheelZoom={true}
 			zoomControl={false}
-			className='fixed min-w-screen min-h-screen'
+			className='absolute min-w-screen min-h-screen top-0 z-0'
 		>
-			<TileLayer url={mapTheme} />
+			<TileLayer
+				url={mapTheme}
+				className='w-full h-full'
+			/>
 
-			{flightNumber && (
+			{flightNumber && flight && depCoordinate && arrCoordinate && (
 				<div>
 					<Polyline
 						pathOptions={completeWayOptions}
-						positions={[
-							flight!.flightInfo.from.coordinates,
-							flight!.currentLocation
-						]}
+						positions={[depCoordinate, arrCoordinate]}
 					/>
+
 					<Polyline
 						positions={[
-							flight!.currentLocation,
-							flight!.flightInfo.to.coordinates
+							flight.live
+								? [flight.live.latitude, flight.live.longitude]
+								: depCoordinate,
+							arrCoordinate
 						]}
 						pathOptions={remainingWeyOptions}
 					/>
 					<Marker
-						position={flight!.flightInfo.from.coordinates}
+						position={depCoordinate}
 						icon={icon({
 							iconUrl: '/start.svg',
 							crossOrigin: true,
@@ -116,7 +132,11 @@ export function Map() {
 					/>
 
 					<Marker
-						position={flight!.currentLocation}
+						position={
+							flight.live
+								? [flight.live.latitude, flight.live.longitude]
+								: depCoordinate
+						}
 						icon={icon({
 							iconUrl: '/active-plane.svg',
 							crossOrigin: true,
@@ -125,7 +145,7 @@ export function Map() {
 						opacity={1}
 					/>
 					<Marker
-						position={flight!.flightInfo.to.coordinates}
+						position={arrCoordinate}
 						icon={icon({
 							iconUrl: '/finish.svg',
 							crossOrigin: true,
@@ -135,27 +155,35 @@ export function Map() {
 				</div>
 			)}
 
-			{FLIGHTS.map(flight => {
-				if (flight.flightInfo.flightNumber === flightNumber) {
+			{flights.map(flight => {
+				if (flight.flight.iata === flightNumber) {
 					return null
 				}
-				return (
-					<Marker
-						eventHandlers={{
-							click: () => {
-								setPathname(flight)
+				if (depCoordinate) {
+					return (
+						<Marker
+							eventHandlers={{
+								click: () => {
+									setPathname(flight)
+								}
+							}}
+							position={
+								flight.live
+									? [flight.live.latitude, flight.live.longitude]
+									: depCoordinate
 							}
-						}}
-						position={flight.currentLocation}
-						key={flight.flightInfo.flightNumber}
-						icon={icon({
-							iconUrl: theme === 'dark' ? '/plane.svg' : '/plane-dark.svg',
-							crossOrigin: true,
-							iconSize: [20, 20]
-						})}
-						opacity={0.5}
-					/>
-				)
+							key={flight.flight.number}
+							icon={icon({
+								iconUrl: theme === 'dark' ? '/plane.svg' : '/plane-dark.svg',
+								crossOrigin: true,
+								iconSize: [20, 20]
+							})}
+							opacity={0.5}
+						/>
+					)
+				} else {
+					return null
+				}
 			})}
 		</MapContainer>
 	)

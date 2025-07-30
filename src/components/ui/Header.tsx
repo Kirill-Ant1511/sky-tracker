@@ -9,7 +9,7 @@ function Header() {
 	const { pathname } = useLocation()
 	const favoriteCount = useAppSelector(state => state.favorites).length
 	return (
-		<header className='w-[90%] flex justify-between items-center bg-background px-10 py-3 rounded-full text-foreground max-sm:px-3 max-sm:w-[99%] max-sm:text-sm animate-loading-top z-10 mt-2'>
+		<header className='w-[90%] flex justify-between items-center bg-background px-10 py-3 rounded-full text-foreground max-sm:px-3 max-sm:w-[99%] max-sm:text-sm animate-loading-top z-20 mt-2'>
 			<Link
 				to={Pages.BASE}
 				className='flex text-amber-500 items-center'

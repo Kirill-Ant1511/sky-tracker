@@ -1,4 +1,5 @@
 import type { IFlight } from '../../types/IFlight'
+import { getFlight } from '../../utils/FlightRequests'
 
 export function getCurrentLocation(
 	from: [number, number],
@@ -12,6 +13,8 @@ export function getCurrentLocation(
 	const lng = from[1] + (to[1] - from[1]) * p
 	return [lat, lng]
 }
+
+export const API_FLIGHTS = getFlight()
 // export const COUNTRIES: CountryPosition[] = [
 // 	{
 // 		name: 'Sofia',
